@@ -7,9 +7,9 @@ az aks create --resource-group akspracticeresource --name aksforacrapi --node-co
 az aks get-credentials --resource-group akspracticeresource --name aksforacrapi
 
 
-az storage account create --resource-group terraformstateresource --name tfsastate --sku Standard_LRS --encryption-services blob
+az storage account create --resource-group terraformstateresource --name tfsaccount009 --sku Standard_LRS --encryption-services blob
 
-az storage container create --name tfsacontainer --account-name tfsastate
+az storage container create --name tfsacontainer --account-name tfsaccount009
 
 az ad sp create-for-rbac --name "ownersecret" --scope /subscriptions/7e3c4da4-d3ea-4b70-8e9c-900c1f13b14f --role Owner --sdk-auth
 
