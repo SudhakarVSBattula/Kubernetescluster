@@ -43,19 +43,19 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            registryId=$(az acr show --name acraks --resource-group akskuberg --query id --output tsv)
+            registryId=$(az acr show --name acrakscontainer1990 --resource-group akskuberg --query id --output tsv)
             MSYS_NO_PATHCONV=1 az role assignment create --assignee ${{ secrets.ARM_CLIENT_ID }} --scope $registryId --role AcrPush
 
       - name: "Build and push image"
         uses: azure/docker-login@v1
         with:
-          login-server: acraks.azurecr.io
+          login-server: acrakscontainer1990.azurecr.io
           username: ${{ secrets.ARM_CLIENT_ID }}
           password: ${{ secrets.ARM_CLIENT_SECRET }}
       - run: |
           cd UserApi
-          docker build . -t acraks.azurecr.io/userapi
-          docker push acraks.azurecr.io/userapi
+          docker build . -t acrakscontainer1990.azurecr.io/userapi
+          docker push acrakscontainer1990.azurecr.io/userapi
 
       - name: Set AKS context
         id: set-context
@@ -75,5 +75,5 @@ jobs:
           manifests: |
             userapi-deployment.yaml
           images: |
-            acraks.azurecr.io/userapi/userapi
+            acrakscontainer1990.azurecr.io/userapi/userapi
           pull-images: false
