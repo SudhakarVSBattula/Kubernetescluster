@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "akskubergref" {
 }
 # Creating Azure Container Registry inside resource group
 resource "azurerm_container_registry" "acraksref" {
-  name                = "acrakscontainer"
+  name                = "acrakscontainer1590"
   resource_group_name = azurerm_resource_group.akskubergref.name
   location            = azurerm_resource_group.akskubergref.location
   sku                 = "Basic"
