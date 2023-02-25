@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "akskubergref" {
   name     = "akskuberg"
-  location = "East US"
+  location = "West Europe"
 }
 # Creating Azure Container Registry inside resource group
 resource "azurerm_container_registry" "acraksref" {
