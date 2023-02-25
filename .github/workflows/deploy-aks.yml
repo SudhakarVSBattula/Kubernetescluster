@@ -43,26 +43,26 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            registryId=$(az acr show --name acrakscontainer15190 --resource-group akskuberg --query id --output tsv)
+            registryId=$(az acr show --name acrcontainer15190 --resource-group akskuberg01 --query id --output tsv)
             MSYS_NO_PATHCONV=1 az role assignment create --assignee ${{ secrets.ARM_CLIENT_ID }} --scope $registryId --role AcrPush
 
       - name: "Build and push image"
         uses: azure/docker-login@v1
         with:
-          login-server: acrakscontainer15190.azurecr.io
+          login-server: acrcontainer15190.azurecr.io
           username: ${{ secrets.ARM_CLIENT_ID }}
           password: ${{ secrets.ARM_CLIENT_SECRET }}
       - run: |
           cd UserApi
-          docker build . -t acrakscontainer15190.azurecr.io/userapi
-          docker push acrakscontainer15190.azurecr.io/userapi
+          docker build . -t acrcontainer15190.azurecr.io/userapi
+          docker push acrcontainer15190.azurecr.io/userapi
 
       - name: Set AKS context
         id: set-context
         uses: azure/aks-set-context@v3
         with:
-          resource-group: "akskuberg"
-          cluster-name: "aksclustr"
+          resource-group: "akskuberg01"
+          cluster-name: "aksclustr15190"
 
       - name: Setup kubectl
         id: install-kubectl
@@ -75,5 +75,5 @@ jobs:
           manifests: |
             userapi-deployment.yaml
           images: |
-            acrakscontainer15190.azurecr.io/userapi/userapi
+            acrcontainer15190.azurecr.io/userapi/userapi
           pull-images: false

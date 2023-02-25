@@ -17,7 +17,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
         - name: userapiforaks
-          image: acrakscontainer15190.azurecr.io/userapi
+          image: acrcontainer15190.azurecr.io/userapi
           ports:
             - containerPort: 80
 ---

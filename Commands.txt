@@ -13,4 +13,4 @@ az storage container create --name tfsacontainer --account-name tfsaccount009
 
 az ad sp create-for-rbac --name "ownersecret" --scope /subscriptions/7e3c4da4-d3ea-4b70-8e9c-900c1f13b14f --role Owner --sdk-auth
 
-az aks get-credentials --resource-group akskuberg --name aksclustr
+az aks get-credentials --resource-group akskuberg01 --name aksclustr
