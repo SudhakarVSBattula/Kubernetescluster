@@ -1,0 +1,14 @@
+docker tag aksuserapikubernetes-image acrforapi.azurecr.io/aksuserapikubernetes-image
+
+docker push acrforapi.azurecr.io/aksuserapikubernetes-image
+
+az aks create --resource-group akspracticeresource --name aksforacrapi --node-count 2 --generate-ssh-keys --attach-acr acrforapi
+
+az aks get-credentials --resource-group akspracticeresource --name aksforacrapi
+
+
+az storage account create --resource-group terraformstateresource --name tfsastate --sku Standard_LRS --encryption-services blob
+
+az storage container create --name tfsacontainer --account-name tfsastate
+
+az ad sp create-for-rbac --name "ownersecret" --scope /subscriptions/7e3c4da4-d3ea-4b70-8e9c-900c1f13b14f --role Owner --sdk-auth
